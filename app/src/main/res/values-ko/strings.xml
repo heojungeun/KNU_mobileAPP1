@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">WalkTree</string>
+    <string name="navigation_drawer_open">탐색 창 열기</string>
+    <string name="navigation_drawer_close">탐색 창 닫기</string>
+    <string name="drawer_home">내 나무</string>
+    <string name="drawer_details">활동 기록</string>
+    <string name="drawer_settings">설정</string>
+    <string name="welcome_title">걸을 땐 스마트폰 사용 금지!</string>
+    <string name="welcome_desc">스마트폰을 사용하지 않고 걸으면\n씨앗이 점점 자라게 됩니다.\n씨앗을 키워 나무를 가꿔보세요!</string>
+    <string name="welcome_begin">시작하기</string>
+    <string name="details_score">나무 점수</string>
+    <string name="settings_placeholder">아직 설정이 없습니다</string>
+</resources>

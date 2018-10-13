@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">WalkTree</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="drawer_home">Your Tree</string>
+    <string name="drawer_details">Details</string>
+    <string name="drawer_settings">Settings</string>
+    <string name="welcome_title">No texting while walking!</string>
+    <string name="welcome_desc">The seed will grow as you walk\nwithout using your phone.\nLet\'s grow your own tree!</string>
+    <string name="welcome_begin">Begin</string>
+    <string name="details_score">Total Points</string>
+    <string name="settings_placeholder">There is nothing to set for now</string>
+</resources>
