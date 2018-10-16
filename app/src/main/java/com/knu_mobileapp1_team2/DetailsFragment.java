@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 public class DetailsFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_details, container, false);
+
+        // for fragment, use this function instead of onCreate
+        // use view.findViewById to get views
+
+        return view;
     }
 }

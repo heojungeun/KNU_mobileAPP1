@@ -12,7 +12,10 @@ import android.widget.Toast;
 public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        // for fragment, use this function instead of onCreate
+        // use view.findViewById to get views
 
         /*
 
@@ -23,6 +26,6 @@ public class SettingsFragment extends Fragment {
 
         */
 
-        return v;
+        return view;
     }
 }
