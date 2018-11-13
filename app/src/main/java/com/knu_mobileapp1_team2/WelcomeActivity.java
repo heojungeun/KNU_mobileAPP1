@@ -20,8 +20,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        sp = getSharedPreferences("com.example.pprtd.pref", Activity.MODE_PRIVATE);
-        if (sp.getBoolean("user_skip_welcome", false)) {
+        sp = getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
+        if (sp.getBoolean("app_enabled", false)) {
             loadMainActivity();
             return;
         }
@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         btnWelcomeOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sp.edit().putBoolean("user_skip_welcome", true).apply();
+                sp.edit().putBoolean("app_enabled", true).apply();
                 loadMainActivity();
             }
         });
