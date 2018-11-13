@@ -10,4 +10,8 @@
     <string name="welcome_begin">시작하기</string>
     <string name="details_score">나무 점수</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
+    <string name="app_invalid_access">앱이 올바르게 실행되지 않았습니다</string>
+
+    <string name="service_noti_title">WalkTree</string>
+    <string name="service_noti_content">%d 걸음 걸었습니다</string>
 </resources>

@@ -1,5 +1,9 @@
 package com.knu_mobileapp1_team2;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Fragment fragHome;
@@ -18,10 +23,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // ** do NOT add features into activity! **
-        // usual codes should go into fragment codes!
-
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sp = getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
+        if (!sp.getBoolean("app_enabled", false)) {
+            Toast.makeText(this, R.string.app_invalid_access, Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
+        Intent si = new Intent(this, StepCounterService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(si);
+        } else {
+            startService(si);
+        }
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
