@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -43,6 +44,12 @@ public class StepCounterService extends Service implements SensorEventListener {
             stopSelf();
             return;
         }
+
+        // we can safely assume that the screen is turned on when service is starting up
+        registerSensor();
+
+        // notification must be shown on foreground service
+        updateNotification();
 
         // register service to receive screen on/off broadcast
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
@@ -85,6 +92,7 @@ public class StepCounterService extends Service implements SensorEventListener {
           .setContentText(String.format(getString(R.string.service_noti_content), currentStep))
           .setContentIntent(npi)
           .setSmallIcon(R.drawable.welcome_seed)
+          .setNumber(0)
           .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE);
 
         n = nb.build();
