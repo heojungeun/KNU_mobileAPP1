@@ -28,8 +28,15 @@ public class StepCounterService extends Service implements SensorEventListener {
     NotificationCompat.Builder nb;
     Notification n;
 
+    SharedPreferences sp;
+    SharedPreferences.Editor sped;
+
     Sensor stepCounter = null;
     int currentStep = 0;
+    int lastStep = 0;
+
+    int savedSteps = 0;
+    int lastAdded = 0;
 
     public StepCounterService() {
     }
@@ -38,12 +45,16 @@ public class StepCounterService extends Service implements SensorEventListener {
     public void onCreate() {
         super.onCreate();
 
-        SharedPreferences sp = getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
+        sp = getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
         if (!sp.getBoolean("app_enabled", false)) {
             // service is not supposed to run
             stopSelf();
             return;
         }
+
+        sped = sp.edit();
+
+        savedSteps = sp.getInt("saved_steps", 0);
 
         // we can safely assume that the screen is turned on when service is starting up
         registerSensor();
@@ -58,7 +69,19 @@ public class StepCounterService extends Service implements SensorEventListener {
             @Override
             public void onReceive(Context context, Intent intent) {
                 // screen on or off triggered
-                intent.getAction();
+                if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                    // screen is turned off
+                    // drop step difference between current and last step
+                    lastStep = currentStep;
+                } else {
+                    // screen is turned on
+                    // add step difference between current and last step to total count
+                    lastAdded = currentStep - lastStep;
+                    savedSteps += lastAdded;
+                    sped.putInt("saved_steps", savedSteps);
+                    sped.apply();
+                    updateNotification();
+                }
             }
         };
         registerReceiver(receiver, filter);
@@ -82,14 +105,16 @@ public class StepCounterService extends Service implements SensorEventListener {
         PendingIntent npi = PendingIntent.getActivity(this, 1, ni, PendingIntent.FLAG_UPDATE_CURRENT);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(NOTI_CHANNEL_ID, "Channel Name", NotificationManager.IMPORTANCE_LOW);
+            NotificationChannel channel = new NotificationChannel(NOTI_CHANNEL_ID, getString(R.string.service_noti_channel), NotificationManager.IMPORTANCE_LOW);
+            // this will remove launcher icon badge from notification (>=8.0)
+            channel.setShowBadge(false);
             NotificationManager nm = getSystemService(NotificationManager.class);
             nm.createNotificationChannel(channel);
         }
 
         nb = new NotificationCompat.Builder(this, NOTI_CHANNEL_ID);
         nb.setContentTitle(getString(R.string.service_noti_title))
-          .setContentText(String.format(getString(R.string.service_noti_content), currentStep))
+          .setContentText(String.format(getString(R.string.service_noti_content), lastAdded))
           .setContentIntent(npi)
           .setSmallIcon(R.drawable.welcome_seed)
           .setNumber(0)
@@ -120,9 +145,12 @@ public class StepCounterService extends Service implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        // TODO: implement proper currentStep update method
+        if (currentStep == 0) {
+            // this is probably the first update
+            // set lastStep to current step count to block tampering
+            lastStep = (int)event.values[0];
+        }
         currentStep = (int)event.values[0];
-        updateNotification();
     }
 
     @Override

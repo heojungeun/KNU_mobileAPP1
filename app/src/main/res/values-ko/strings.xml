@@ -8,10 +8,12 @@
     <string name="welcome_title">걸을 땐 스마트폰 사용 금지!</string>
     <string name="welcome_desc">스마트폰을 사용하지 않고 걸으면\n씨앗이 점점 자라게 됩니다.\n씨앗을 키워 나무를 가꿔보세요!</string>
     <string name="welcome_begin">시작하기</string>
+    <string name="main_score">총 걸음 수\n%d</string>
     <string name="details_score">나무 점수</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
     <string name="app_invalid_access">앱이 올바르게 실행되지 않았습니다</string>
 
     <string name="service_noti_title">WalkTree</string>
-    <string name="service_noti_content">%d 걸음 걸었습니다</string>
+    <string name="service_noti_content">화면이 꺼지고 %d걸음 걸었습니다</string>
+    <string name="service_noti_channel">걸음 확인</string>
 </resources>
