@@ -10,6 +10,8 @@
     <string name="welcome_begin">시작하기</string>
     <string name="main_score">총 걸음 수\n%d</string>
     <string name="details_score">나무 점수</string>
+    <string name="details_steps">총 걸음 수</string>
+    <string name="details_extra">추가 점수</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
     <string name="app_invalid_access">앱이 올바르게 실행되지 않았습니다</string>
 

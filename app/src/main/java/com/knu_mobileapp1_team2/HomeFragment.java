@@ -11,19 +11,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class HomeFragment extends Fragment {
-    View view;
+import java.util.Random;
 
+public class HomeFragment extends Fragment {
     SharedPreferences sp;
+    TextView tvwMainSpeech;
+
+    String[] treeQuotes;
+    Random r;
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // for fragment, use this function instead of onCreate
         // use view.findViewById to get views
 
         sp = getContext().getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
+        tvwMainSpeech = view.findViewById(R.id.tvwMainSpeech);
+
+        treeQuotes = getResources().getStringArray(R.array.tree_quotes);
+        r = new Random();
 
         return view;
     }
@@ -32,9 +40,6 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        int savedSteps = sp.getInt("saved_steps", 0);
-
-        TextView tvwMainSpeech = view.findViewById(R.id.tvwMainSpeech);
-        tvwMainSpeech.setText(String.format(getString(R.string.main_score), savedSteps));
+        tvwMainSpeech.setText(treeQuotes[r.nextInt(treeQuotes.length)]);
     }
 }

@@ -9,7 +9,9 @@
     <string name="welcome_desc">The seed will grow as you walk\nwithout using your phone.\nLet\'s grow your own tree!</string>
     <string name="welcome_begin">Begin</string>
     <string name="main_score">Total Steps\n%d</string>
-    <string name="details_score">Total Points</string>
+    <string name="details_score">Tree Points</string>
+    <string name="details_steps">Total Steps</string>
+    <string name="details_extra">Extra Points</string>
     <string name="settings_placeholder">There is nothing to set for now</string>
     <string name="app_invalid_access">App is improperly launched.</string>
 
