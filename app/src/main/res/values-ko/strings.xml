@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WalkTree</string>
+    <string name="app_name">Smartree</string>
     <string name="navigation_drawer_open">탐색 창 열기</string>
     <string name="navigation_drawer_close">탐색 창 닫기</string>
     <string name="drawer_home">내 나무</string>
