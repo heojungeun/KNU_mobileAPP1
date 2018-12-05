@@ -41,7 +41,6 @@ public class StepCounterService extends Service implements SensorEventListener {
     int lastAdded = 0;
 
     long totalRunningTime;
-    long totalScreenOnTime;
     long lastOnTime;
 
     public StepCounterService() {
@@ -63,7 +62,6 @@ public class StepCounterService extends Service implements SensorEventListener {
         savedSteps = sp.getInt("saved_steps", 0);
 
         totalRunningTime = sp.getLong("total_running_time", 0);
-        totalScreenOnTime = sp.getLong("total_screen_on_time", 0);
         lastOnTime = System.currentTimeMillis();
 
         // we can safely assume that the screen is turned on when service is starting up
@@ -83,12 +81,6 @@ public class StepCounterService extends Service implements SensorEventListener {
                     // screen is turned off
                     // drop step difference between current and last step
                     lastStep = currentStep;
-
-                    //
-                    long cRunningTime = System.currentTimeMillis();
-                    lastOnTime = (cRunningTime - lastOnTime);
-                    totalScreenOnTime += lastOnTime;
-                    sped.putLong("total_screen_on_time", totalScreenOnTime);
                 } else {
                     // screen is turned on
                     // add step difference between current and last step to total count
