@@ -69,7 +69,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.79"
+            app:layout_constraintVertical_bias="0.7"
             app:srcCompat="@drawable/temp_ground" />
 
         <ImageView
@@ -81,6 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.44"
             app:srcCompat="@drawable/tree_seed" />
 
     </android.support.constraint.ConstraintLayout>

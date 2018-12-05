@@ -12,10 +12,17 @@
     <string name="details_score">나무 점수</string>
     <string name="details_steps">총 걸음 수</string>
     <string name="details_extra">추가 점수</string>
+    <string name="details_total_running_time">나무와 함께한 시간</string>
+    <string name="details_total_running_time_format">%d일 %d시간 %d분 %d초</string>
+    <string name="details_longest_step">최고 걸음 수</string>
+    <string name="details_killed_trees">죽은 나무 수</string>
+    <string name="details_no_record">기록 없음</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
+    <string name="settings_reset">완전 초기화</string>
+    <string name="settings_reset_confirm">모든 진행 기록이 초기화됩니다!\n계속할까요?</string>
     <string name="app_invalid_access">앱이 올바르게 실행되지 않았습니다</string>
 
-    <string name="service_noti_title">WalkTree</string>
+    <string name="service_noti_title">SmarTree</string>
     <string name="service_noti_content">화면이 꺼지고 %d걸음 걸었습니다</string>
     <string name="service_noti_channel">걸음 확인</string>
 </resources>

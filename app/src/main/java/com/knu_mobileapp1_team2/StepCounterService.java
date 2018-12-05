@@ -20,6 +20,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
+import java.util.Date;
+
 public class StepCounterService extends Service implements SensorEventListener {
     private static final String NOTI_CHANNEL_ID = "com.knu_mobileapp1_team2.notificationchannel";
 
@@ -37,6 +39,10 @@ public class StepCounterService extends Service implements SensorEventListener {
 
     int savedSteps = 0;
     int lastAdded = 0;
+
+    long totalRunningTime;
+    long totalScreenOnTime;
+    long lastOnTime;
 
     public StepCounterService() {
     }
@@ -56,6 +62,10 @@ public class StepCounterService extends Service implements SensorEventListener {
 
         savedSteps = sp.getInt("saved_steps", 0);
 
+        totalRunningTime = sp.getLong("total_running_time", 0);
+        totalScreenOnTime = sp.getLong("total_screen_on_time", 0);
+        lastOnTime = System.currentTimeMillis();
+
         // we can safely assume that the screen is turned on when service is starting up
         registerSensor();
 
@@ -73,12 +83,36 @@ public class StepCounterService extends Service implements SensorEventListener {
                     // screen is turned off
                     // drop step difference between current and last step
                     lastStep = currentStep;
+
+                    //
+                    long cRunningTime = System.currentTimeMillis();
+                    lastOnTime = (cRunningTime - lastOnTime);
+                    totalScreenOnTime += lastOnTime;
+                    sped.putLong("total_screen_on_time", totalScreenOnTime);
                 } else {
                     // screen is turned on
                     // add step difference between current and last step to total count
                     lastAdded = currentStep - lastStep;
                     savedSteps += lastAdded;
+
+                    // update running time
+                    long cRunningTime = System.currentTimeMillis();
+                    lastOnTime = (cRunningTime - lastOnTime);
+                    totalRunningTime += lastOnTime;
+                    sped.putLong("total_running_time", totalRunningTime);
+                    lastOnTime = cRunningTime;
+
+                    // check and update(if needed) longest step
+                    int lastLongestStep = sp.getInt("longest_step", 0);
+                    if (lastLongestStep < lastAdded) {
+                        sped.putInt("longest_step", lastAdded);
+                        sped.putLong("longest_step_date", new Date().getTime());
+                    }
+
+                    // update total step
                     sped.putInt("saved_steps", savedSteps);
+
+                    // write to preference and update notification
                     sped.apply();
                     updateNotification();
                 }

@@ -12,10 +12,17 @@
     <string name="details_score">Tree Points</string>
     <string name="details_steps">Total Steps</string>
     <string name="details_extra">Extra Points</string>
+    <string name="details_total_running_time">Total tree time</string>
+    <string name="details_total_running_time_format">%d days %dh %dm %ds</string>
+    <string name="details_longest_step">Highest number of steps</string>
+    <string name="details_killed_trees">Number of trees killed</string>
+    <string name="details_no_record">No record</string>
     <string name="settings_placeholder">There is nothing to set for now</string>
+    <string name="settings_reset">Reset Everything</string>
+    <string name="settings_reset_confirm">This will reset all of your progress!\nAre you sure?</string>
     <string name="app_invalid_access">App is improperly launched.</string>
 
-    <string name="service_noti_title">WalkTree</string>
+    <string name="service_noti_title">SmarTree</string>
     <string name="service_noti_content">%d steps walked during last screen off</string>
     <string name="service_noti_channel">Step Status</string>
 </resources>
