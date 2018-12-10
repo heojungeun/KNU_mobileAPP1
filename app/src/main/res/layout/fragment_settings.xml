@@ -13,4 +13,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_reset" />
+
+    <LinearLayout
+        android:id="@+id/llSettingsDebugPane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_debug_title"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnSettingsDebugAddTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_debug_addtime" />
+
+        <Button
+            android:id="@+id/btnSettingsDebugAddStep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_debug_addstep" />
+
+        <Button
+            android:id="@+id/btnSettingsDebugAddPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_debug_addpoint" />
+
+        <Button
+            android:id="@+id/btnSettingsDebugResetKill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_debug_resetkills" />
+    </LinearLayout>
+
 </LinearLayout>

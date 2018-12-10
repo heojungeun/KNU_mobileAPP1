@@ -1,9 +1,14 @@
 package com.knu_mobileapp1_team2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -17,16 +22,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
     Fragment fragHome;
     Fragment fragDetails;
     Fragment fragSettings;
+
+    Fragment fragCurrent;
+
+    SharedPreferences sp;
+
+    Sensor stepDetector = null;
+
+    int steps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sp = getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
+        sp = getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
         if (!sp.getBoolean("app_enabled", false)) {
             Toast.makeText(this, R.string.app_invalid_access, Toast.LENGTH_LONG).show();
             finish();
@@ -60,6 +73,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    protected void onPause() {
+        unregisterSensor();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        registerSensor();
+        super.onResume();
+    }
+
+    private void registerSensor() {
+        if (stepDetector != null) return;
+        SensorManager sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        stepDetector = sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if (stepDetector != null) sm.registerListener(this, stepDetector, SensorManager.SENSOR_DELAY_NORMAL, 5000000);     // batch for 5sec.
+    }
+
+    private void unregisterSensor() {
+        if (stepDetector == null) return;
+        SensorManager sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        sm.unregisterListener(this);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -90,5 +128,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTitle(title);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fl_fragment_holder, newFragment).commit();
+
+        fragCurrent = newFragment;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        steps++;
+
+        if (steps == 6) {
+            Toast.makeText(this, R.string.main_walk_warning, Toast.LENGTH_LONG).show();
+
+            if (fragCurrent instanceof HomeFragment) {
+                ((HomeFragment)fragCurrent).dangerTree();
+            }
+        } else if (steps > 18) {
+            long totalRunningTime = sp.getLong("total_running_time", 0);
+            int killedTrees = sp.getInt("killed_trees", 0);
+
+            killedTrees++;
+
+            sp.edit().putLong("last_dead_time", totalRunningTime)
+                     .putInt("killed_trees", killedTrees).apply();
+
+            Toast.makeText(this, R.string.main_walk_dead, Toast.LENGTH_LONG).show();
+
+            if (fragCurrent instanceof HomeFragment) {
+                ((HomeFragment)fragCurrent).killTree();
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }

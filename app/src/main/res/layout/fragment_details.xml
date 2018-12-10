@@ -26,6 +26,8 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="8dp"
             android:text="@string/details_score"
             android:textAlignment="textStart" />
@@ -34,6 +36,8 @@
             android:id="@+id/tvwDetailsTreePoints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
             android:fontFamily="sans-serif-condensed"
             android:text="12345"
             android:textAlignment="textStart"

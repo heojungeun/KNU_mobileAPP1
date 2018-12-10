@@ -142,7 +142,7 @@ public class StepCounterService extends Service implements SensorEventListener {
         nb.setContentTitle(getString(R.string.service_noti_title))
           .setContentText(String.format(getString(R.string.service_noti_content), lastAdded))
           .setContentIntent(npi)
-          .setSmallIcon(R.drawable.welcome_seed)
+          .setSmallIcon(R.mipmap.ic_launcher)
           .setNumber(0)
           .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE);
 

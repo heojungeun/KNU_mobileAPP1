@@ -11,10 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class SettingsFragment extends Fragment {
     SharedPreferences sp;
+
+    int resetCancelled = 0;
+
+    LinearLayout llSettingsDebugPane;
+    Button btnSettingsDebugAddTime;
+    Button btnSettingsDebugAddStep;
+    Button btnSettingsDebugAddPoint;
+    Button btnSettingsDebugResetKill;
+
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,8 +50,46 @@ public class SettingsFragment extends Fragment {
                                 getActivity().finish();
                             }
                         })
-                        .setNegativeButton(android.R.string.no, null);
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                resetCancelled++;
+                                if (resetCancelled > 4) {
+                                    llSettingsDebugPane.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        });
                 b.show();
+            }
+        });
+
+        llSettingsDebugPane = view.findViewById(R.id.llSettingsDebugPane);
+        btnSettingsDebugAddTime = view.findViewById(R.id.btnSettingsDebugAddTime);
+        btnSettingsDebugAddTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sp.edit().putLong("total_running_time", sp.getLong("total_running_time", 0) + (1000 * 60 * 60)).apply();
+            }
+        });
+        btnSettingsDebugAddStep = view.findViewById(R.id.btnSettingsDebugAddStep);
+        btnSettingsDebugAddStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sp.edit().putInt("saved_steps", sp.getInt("saved_steps", 0) + 100).apply();
+            }
+        });
+        btnSettingsDebugAddPoint = view.findViewById(R.id.btnSettingsDebugAddPoint);
+        btnSettingsDebugAddPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sp.edit().putInt("saved_points", sp.getInt("saved_points", 0) + 100).apply();
+            }
+        });
+        btnSettingsDebugResetKill = view.findViewById(R.id.btnSettingsDebugResetKill);
+        btnSettingsDebugResetKill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sp.edit().remove("last_dead_time").remove("killed_trees").apply();
             }
         });
 

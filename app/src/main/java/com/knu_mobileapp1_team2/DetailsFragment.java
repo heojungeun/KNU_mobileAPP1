@@ -50,12 +50,15 @@ public class DetailsFragment extends Fragment {
         super.onResume();
 
         int savedSteps = sp.getInt("saved_steps", 0);
+        int savedPoints = sp.getInt("saved_points", 0);
 
         tvwDetailsTotalSteps.setText(String.format(Locale.getDefault(), "%d", savedSteps));
-        tvwDetailsExtraPoints.setText("0");
+        tvwDetailsExtraPoints.setText(String.format(Locale.getDefault(), "%d", savedPoints));
         tvwDetailsTreePoints.setText(String.format(Locale.getDefault(), "%d", savedSteps));
 
-        long totalRunningTime = sp.getLong("total_running_time", 0);
+        long totalTime = sp.getLong("total_running_time", 0);
+        long lastDeadTime = sp.getLong("last_dead_time", 0);
+        long totalRunningTime = totalTime - lastDeadTime;
         long second = (totalRunningTime / 1000) % 60;
         long minute = (totalRunningTime / (1000 * 60)) % 60;
         long hour = (totalRunningTime / (1000 * 60 * 60)) % 24;

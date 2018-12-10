@@ -9,6 +9,12 @@
     <string name="welcome_desc">스마트폰을 사용하지 않고 걸으면\n씨앗이 점점 자라게 됩니다.\n씨앗을 키워 나무를 가꿔보세요!</string>
     <string name="welcome_begin">시작하기</string>
     <string name="main_score">총 걸음 수\n%d</string>
+    <string name="main_default_quote">오늘도 화이팅…</string>
+    <string name="main_hurt_quote">나를 살려줘…</string>
+    <string name="main_dead_quote">당신…말로 해…</string>
+    <string name="main_change_quote">한마디 바꾸기</string>
+    <string name="main_walk_warning">걷지 마세요!\n앱을 보며 걸으면 나무가 죽을 것입니다!</string>
+    <string name="main_walk_dead">나무가 죽었습니다!\n앱을 보며 걷지 마세요!</string>
     <string name="details_score">나무 점수</string>
     <string name="details_steps">총 걸음 수</string>
     <string name="details_extra">추가 점수</string>
@@ -21,6 +27,12 @@
     <string name="settings_reset">완전 초기화</string>
     <string name="settings_reset_confirm">모든 진행 기록이 초기화됩니다!\n계속할까요?</string>
     <string name="app_invalid_access">앱이 올바르게 실행되지 않았습니다</string>
+
+    <string name="settings_debug_title">디버그 기능</string>
+    <string name="settings_debug_addtime">시간 1시간 더하기</string>
+    <string name="settings_debug_addstep">걸음 100걸음 더하기</string>
+    <string name="settings_debug_addpoint">포인트 100 더하기</string>
+    <string name="settings_debug_resetkills">나무 죽음 카운트 초기화</string>
 
     <string name="service_noti_title">SmarTree</string>
     <string name="service_noti_content">화면이 꺼지고 %d걸음 걸었습니다</string>

@@ -5,10 +5,16 @@
     <string name="drawer_home">Your Tree</string>
     <string name="drawer_details">Details</string>
     <string name="drawer_settings">Settings</string>
-    <string name="welcome_title">Do not texting while walking!</string>
+    <string name="welcome_title">Do not text while walking!</string>
     <string name="welcome_desc">The seed will grow as you walk\nwithout using your phone.\nLet\'s grow your own tree!</string>
     <string name="welcome_begin">Begin</string>
     <string name="main_score">Total Steps\n%d</string>
+    <string name="main_default_quote">Have a nice day…</string>
+    <string name="main_hurt_quote">Don\'t do it…</string>
+    <string name="main_dead_quote">You…killed me…</string>
+    <string name="main_change_quote">Change Quote</string>
+    <string name="main_walk_warning">Stop walking!\nTree will die if you walk while watching this app!</string>
+    <string name="main_walk_dead">You\'ve killed the tree!\nDo not walk while watching this app!</string>
     <string name="details_score">Tree Points</string>
     <string name="details_steps">Total Steps</string>
     <string name="details_extra">Extra Points</string>
@@ -21,6 +27,12 @@
     <string name="settings_reset">Reset Everything</string>
     <string name="settings_reset_confirm">This will reset all of your progress!\nAre you sure?</string>
     <string name="app_invalid_access">App is improperly launched.</string>
+
+    <string name="settings_debug_title">Debug Features</string>
+    <string name="settings_debug_addtime">Add 1 hour</string>
+    <string name="settings_debug_addstep">Add 100 steps</string>
+    <string name="settings_debug_addpoint">Add 100 points</string>
+    <string name="settings_debug_resetkills">Reset Tree Kill Status</string>
 
     <string name="service_noti_title">SmarTree</string>
     <string name="service_noti_content">%d steps walked during last screen off</string>
