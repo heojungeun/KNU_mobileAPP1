@@ -130,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.fl_fragment_holder, newFragment).commit();
 
         fragCurrent = newFragment;
+
+        if (fragCurrent instanceof HomeFragment) {
+            ((HomeFragment)fragCurrent).appSteps = steps;
+        }
     }
 
     @Override

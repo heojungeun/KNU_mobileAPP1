@@ -29,6 +29,8 @@ public class HomeFragment extends Fragment {
     ImageView ivwMainTree6;
     ImageView ivwMainTree7;
 
+    int appSteps = 0;
+
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -96,6 +98,12 @@ public class HomeFragment extends Fragment {
             setTreeVisible(4);
         } else {
             setTreeVisible(5);
+        }
+
+        if (appSteps > 18) {
+            killTree();
+        } else if (appSteps >= 6) {
+            dangerTree();
         }
     }
 
