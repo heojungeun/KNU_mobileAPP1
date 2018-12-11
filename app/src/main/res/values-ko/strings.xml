@@ -4,6 +4,7 @@
     <string name="navigation_drawer_close">탐색 창 닫기</string>
     <string name="drawer_home">내 나무</string>
     <string name="drawer_details">활동 기록</string>
+    <string name="drawer_store">상점</string>
     <string name="drawer_settings">설정</string>
     <string name="welcome_title">걸을 땐 스마트폰 사용 금지!</string>
     <string name="welcome_desc">스마트폰을 사용하지 않고 걸으면\n씨앗이 점점 자라게 됩니다.\n씨앗을 키워 나무를 가꿔보세요!</string>
@@ -23,6 +24,7 @@
     <string name="details_longest_step">최고 걸음 수</string>
     <string name="details_killed_trees">죽은 나무 수</string>
     <string name="details_no_record">기록 없음</string>
+    <string name="store_points">사용 가능한 포인트: %d</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
     <string name="settings_reset">완전 초기화</string>
     <string name="settings_reset_confirm">모든 진행 기록이 초기화됩니다!\n계속할까요?</string>

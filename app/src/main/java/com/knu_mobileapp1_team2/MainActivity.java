@@ -25,6 +25,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
     Fragment fragHome;
     Fragment fragDetails;
+    Fragment fragStore;
     Fragment fragSettings;
 
     Fragment fragCurrent;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragHome = new HomeFragment();
         fragDetails = new DetailsFragment();
         fragSettings = new SettingsFragment();
+        fragStore = new StoreFragment();
 
         replaceFragment(fragHome, getString(R.string.drawer_home));
     }
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPause() {
         unregisterSensor();
+        steps = 0;
         super.onPause();
     }
 
@@ -117,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             replaceFragment(fragDetails, getString(R.string.drawer_details));
         } else if (id == R.id.nav_settings) {
             replaceFragment(fragSettings, getString(R.string.drawer_settings));
+        } else if (id == R.id.nav_store) {
+            replaceFragment(fragStore, getString(R.string.drawer_store));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

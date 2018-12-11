@@ -104,6 +104,10 @@ public class StepCounterService extends Service implements SensorEventListener {
                     // update total step
                     sped.putInt("saved_steps", savedSteps);
 
+                    int cPoint = sp.getInt("saved_points", 0);
+                    cPoint += (int)(lastAdded / 5);
+                    sped.putInt("saved_points", cPoint);
+
                     // write to preference and update notification
                     sped.apply();
                     updateNotification();

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
     SharedPreferences sp;
+    FrameLayout flMainSpeech;
     TextView tvwMainSpeech;
 
     ImageView ivwMainTree1;
@@ -39,9 +41,10 @@ public class HomeFragment extends Fragment {
         // use view.findViewById to get views
 
         sp = getContext().getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
+        flMainSpeech = view.findViewById(R.id.flMainSpeech);
         tvwMainSpeech = view.findViewById(R.id.tvwMainSpeech);
 
-        tvwMainSpeech.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listenerChangeQuote = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder ab = new AlertDialog.Builder(getContext());
@@ -55,8 +58,12 @@ public class HomeFragment extends Fragment {
                 ab.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        sp.edit().putString("tree_speech", editText.getText().toString()).apply();
-                        tvwMainSpeech.setText(editText.getText().toString());
+                        String newQuote = editText.getText().toString();
+                        if (newQuote.trim().length() == 0) {
+                            newQuote = getString(R.string.main_default_quote);
+                        }
+                        sp.edit().putString("tree_speech", newQuote).apply();
+                        tvwMainSpeech.setText(newQuote);
                     }
                 });
 
@@ -64,7 +71,9 @@ public class HomeFragment extends Fragment {
 
                 ab.show();
             }
-        });
+        };
+        flMainSpeech.setOnClickListener(listenerChangeQuote);
+        tvwMainSpeech.setOnClickListener(listenerChangeQuote);
 
         ivwMainTree1 = view.findViewById(R.id.ivwMainTree1);
         ivwMainTree2 = view.findViewById(R.id.ivwMainTree2);

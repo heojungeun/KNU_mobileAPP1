@@ -5,15 +5,19 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_mypage"
         android:title="@string/drawer_home" />
     <item
         android:id="@+id/nav_details"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_details"
         android:title="@string/drawer_details" />
     <item
+        android:id="@+id/nav_store"
+        android:icon="@drawable/ic_purchase"
+        android:title="@string/drawer_store" />
+    <item
         android:id="@+id/nav_settings"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_settings"
         android:title="@string/drawer_settings" />
 
 </menu>
