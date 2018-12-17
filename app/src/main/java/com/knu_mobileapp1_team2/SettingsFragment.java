@@ -30,9 +30,6 @@ public class SettingsFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        // for fragment, use this function instead of onCreate
-        // use view.findViewById to get views
-
         sp = getContext().getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
 
         Button btnSettingsReset = view.findViewById(R.id.btnSettingsReset);

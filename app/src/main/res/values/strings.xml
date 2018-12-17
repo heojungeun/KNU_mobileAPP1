@@ -31,6 +31,7 @@
     <string name="store_item_3">Apple</string>
     <string name="store_item_4">Tomato</string>
     <string name="store_item_5">Pumpkin</string>
+    <string name="store_not_enough_point">You need more points to purchase this item!</string>
     <string name="settings_placeholder">There is nothing to set for now</string>
     <string name="settings_reset">Reset Everything</string>
     <string name="settings_reset_confirm">This will reset all of your progress!\nAre you sure?</string>

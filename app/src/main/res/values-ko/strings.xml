@@ -30,6 +30,7 @@
     <string name="store_item_3">사과</string>
     <string name="store_item_4">토마토</string>
     <string name="store_item_5">호박</string>
+    <string name="store_not_enough_point">이 아이템을 사려면 포인트가 더 필요합니다!</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
     <string name="settings_reset">완전 초기화</string>
     <string name="settings_reset_confirm">모든 진행 기록이 초기화됩니다!\n계속할까요?</string>

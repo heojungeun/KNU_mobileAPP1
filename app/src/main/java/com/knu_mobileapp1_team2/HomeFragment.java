@@ -31,14 +31,17 @@ public class HomeFragment extends Fragment {
     ImageView ivwMainTree6;
     ImageView ivwMainTree7;
 
+    ImageView ivwMainPartnerAvocado;
+    ImageView ivwMainPartnerCarrot;
+    ImageView ivwMainPartnerApple;
+    ImageView ivwMainPartnerTomato;
+    ImageView ivwMainPartnerPumpkin;
+
     int appSteps = 0;
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        // for fragment, use this function instead of onCreate
-        // use view.findViewById to get views
 
         sp = getContext().getSharedPreferences("com.knu_mobileapp1_team2.pref", Activity.MODE_PRIVATE);
         flMainSpeech = view.findViewById(R.id.flMainSpeech);
@@ -83,6 +86,12 @@ public class HomeFragment extends Fragment {
         ivwMainTree6 = view.findViewById(R.id.ivwMainTree6);
         ivwMainTree7 = view.findViewById(R.id.ivwMainTree7);
 
+        ivwMainPartnerAvocado = view.findViewById(R.id.ivwMainPartnerAvocado);
+        ivwMainPartnerCarrot = view.findViewById(R.id.ivwMainPartnerCarrot);
+        ivwMainPartnerApple = view.findViewById(R.id.ivwMainPartnerApple);
+        ivwMainPartnerTomato = view.findViewById(R.id.ivwMainPartnerTomato);
+        ivwMainPartnerPumpkin = view.findViewById(R.id.ivwMainPartnerPumpkin);
+
         return view;
     }
 
@@ -109,6 +118,8 @@ public class HomeFragment extends Fragment {
             setTreeVisible(5);
         }
 
+        updatePartnerVisibility();
+
         if (appSteps > 18) {
             killTree();
         } else if (appSteps >= 6) {
@@ -124,6 +135,14 @@ public class HomeFragment extends Fragment {
         ivwMainTree5.setVisibility((which == 5) ? View.VISIBLE : View.INVISIBLE);
         ivwMainTree6.setVisibility((which == 6) ? View.VISIBLE : View.INVISIBLE);
         ivwMainTree7.setVisibility((which == 7) ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    public void updatePartnerVisibility() {
+        ivwMainPartnerAvocado.setVisibility((sp.getBoolean("purchased_avocado", false)) ? View.VISIBLE : View.INVISIBLE);
+        ivwMainPartnerCarrot.setVisibility((sp.getBoolean("purchased_carrot", false)) ? View.VISIBLE : View.INVISIBLE);
+        ivwMainPartnerApple.setVisibility((sp.getBoolean("purchased_apple", false)) ? View.VISIBLE : View.INVISIBLE);
+        ivwMainPartnerTomato.setVisibility((sp.getBoolean("purchased_tomato", false)) ? View.VISIBLE : View.INVISIBLE);
+        ivwMainPartnerPumpkin.setVisibility((sp.getBoolean("purchased_pumpkin", false)) ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void dangerTree() {

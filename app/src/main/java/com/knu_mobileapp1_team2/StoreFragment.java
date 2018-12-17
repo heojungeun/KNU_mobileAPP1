@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class StoreFragment extends Fragment {
     TextView tvwStorePoints;
 
     ListView lvwStoreList;
+    StoreButtonAdapter sba;
 
     ArrayList<StoreButton> listButtons;
 
@@ -46,13 +48,13 @@ public class StoreFragment extends Fragment {
         lvwStoreList = view.findViewById(R.id.lvwStoreList);
 
         listButtons = new ArrayList<>();
-        listButtons.add(new StoreButton(getString(R.string.store_item_1), 500, R.drawable.partner_avocado));
-        listButtons.add(new StoreButton(getString(R.string.store_item_2), 700, R.drawable.partner_carrot));
-        listButtons.add(new StoreButton(getString(R.string.store_item_3), 900, R.drawable.partner_apple));
-        listButtons.add(new StoreButton(getString(R.string.store_item_4), 1100, R.drawable.partner_tomato));
-        listButtons.add(new StoreButton(getString(R.string.store_item_5), 1300, R.drawable.partner_pumpkin));
+        if (!sp.getBoolean("purchased_avocado", false)) listButtons.add(new StoreButton("avocado", getString(R.string.store_item_1), 500, R.drawable.partner_avocado));
+        if (!sp.getBoolean("purchased_carrot", false)) listButtons.add(new StoreButton("carrot", getString(R.string.store_item_2), 700, R.drawable.partner_carrot));
+        if (!sp.getBoolean("purchased_apple", false)) listButtons.add(new StoreButton("apple", getString(R.string.store_item_3), 900, R.drawable.partner_apple));
+        if (!sp.getBoolean("purchased_tomato", false)) listButtons.add(new StoreButton("tomato", getString(R.string.store_item_4), 1100, R.drawable.partner_tomato));
+        if (!sp.getBoolean("purchased_pumpkin", false)) listButtons.add(new StoreButton("pumpkin", getString(R.string.store_item_5), 1300, R.drawable.partner_pumpkin));
 
-        StoreButtonAdapter sba = new StoreButtonAdapter(getContext(), listButtons);
+        sba = new StoreButtonAdapter(getContext(), listButtons);
 
         lvwStoreList.setAdapter(sba);
 
@@ -64,24 +66,37 @@ public class StoreFragment extends Fragment {
         super.onResume();
 
         tvwStorePoints.setText(String.format(getString(R.string.store_points), totalPoints - usedPoints));
+    }
 
+    void purchaseItem(int i) {
+        StoreButton targetItem = listButtons.get(i);
 
+        if (totalPoints - usedPoints < targetItem.price) {
+            Toast.makeText(getContext(), getString(R.string.store_not_enough_point), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        usedPoints += targetItem.price;
+        listButtons.remove(targetItem);
+
+        sba.notifyDataSetChanged();
+        tvwStorePoints.setText(String.format(getString(R.string.store_points), totalPoints - usedPoints));
+
+        sp.edit().putBoolean("purchased_" + targetItem.id, true).putInt("used_points", usedPoints).apply();
     }
 
     private class StoreButton {
+        String id;
         String name;
         int price;
         int imgres;
 
-        public StoreButton(String name, int price, int imgres) {
+        public StoreButton(String id, String name, int price, int imgres) {
+            this.id = id;
             this.name = name;
             this.price = price;
             this.imgres = imgres;
         }
-    }
-
-    void purchaseItem(int i) {
-
     }
 
     private class StoreButtonAdapter extends BaseAdapter {

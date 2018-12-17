@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (fragCurrent instanceof HomeFragment) {
                 ((HomeFragment)fragCurrent).dangerTree();
             }
-        } else if (steps > 18) {
+        } else if (steps == 18) {
             long totalRunningTime = sp.getLong("total_running_time", 0);
             int killedTrees = sp.getInt("killed_trees", 0);
 

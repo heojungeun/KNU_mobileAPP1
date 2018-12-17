@@ -29,9 +29,6 @@ public class DetailsFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        // for fragment, use this function instead of onCreate
-        // use view.findViewById to get views
-
         tvwDetailsTreePoints = view.findViewById(R.id.tvwDetailsTreePoints);
         tvwDetailsTotalSteps = view.findViewById(R.id.tvwDetailsTotalSteps);
         tvwDetailsExtraPoints = view.findViewById(R.id.tvwDetailsExtraPoints);
