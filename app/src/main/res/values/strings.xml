@@ -24,7 +24,13 @@
     <string name="details_longest_step">Highest number of steps</string>
     <string name="details_killed_trees">Number of trees killed</string>
     <string name="details_no_record">No record</string>
-    <string name="store_points">Available Points: %d</string>
+    <string name="store_points">Available Points: %dP</string>
+    <string name="store_pricetag" translatable="false">%dP</string>
+    <string name="store_item_1">Avocado</string>
+    <string name="store_item_2">Carrot</string>
+    <string name="store_item_3">Apple</string>
+    <string name="store_item_4">Tomato</string>
+    <string name="store_item_5">Pumpkin</string>
     <string name="settings_placeholder">There is nothing to set for now</string>
     <string name="settings_reset">Reset Everything</string>
     <string name="settings_reset_confirm">This will reset all of your progress!\nAre you sure?</string>

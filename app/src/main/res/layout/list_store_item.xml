@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/ivwStoreItemPic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:layout_weight="0"
             android:src="@mipmap/ic_launcher_round" />
 
@@ -36,7 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvwStoreItemPrice"
@@ -45,7 +47,8 @@
                 android:layout_weight="1"
                 android:gravity="bottom"
                 android:text="TextView"
-                android:textAlignment="textEnd" />
+                android:textAlignment="textEnd"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

@@ -24,7 +24,12 @@
     <string name="details_longest_step">최고 걸음 수</string>
     <string name="details_killed_trees">죽은 나무 수</string>
     <string name="details_no_record">기록 없음</string>
-    <string name="store_points">사용 가능한 포인트: %d</string>
+    <string name="store_points">사용 가능한 포인트: %dP</string>
+    <string name="store_item_1">아보카도</string>
+    <string name="store_item_2">당근</string>
+    <string name="store_item_3">사과</string>
+    <string name="store_item_4">토마토</string>
+    <string name="store_item_5">호박</string>
     <string name="settings_placeholder">아직 설정이 없습니다</string>
     <string name="settings_reset">완전 초기화</string>
     <string name="settings_reset_confirm">모든 진행 기록이 초기화됩니다!\n계속할까요?</string>
